@@ -35,7 +35,7 @@ set_instance_parameter_value spi_engine_interconnect_0 {NUM_OF_SDI} {1}
 
 add_instance spi_engine_offload_0 spi_engine_offload
 set_instance_parameter_value spi_engine_offload_0 {ASYNC_TRIG}    {1}
-set_instance_parameter_value spi_engine_offload_0 {ASYNC_SPI_CLK} {1}
+set_instance_parameter_value spi_engine_offload_0 {ASYNC_SPI_CLK} {0}
 set_instance_parameter_value spi_engine_offload_0 {DATA_WIDTH}    {32}
 set_instance_parameter_value spi_engine_offload_0 {NUM_OF_SDI}    {1}
 
