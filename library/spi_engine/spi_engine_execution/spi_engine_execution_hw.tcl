@@ -6,7 +6,6 @@ source ../../scripts/adi_ip_intel.tcl
 ad_ip_create spi_engine_execution {SPI Engine Execution}
 set_module_property ELABORATION_CALLBACK p_elaboration
 ad_ip_files spi_engine_execution [list\
-  altiobuf.v \
   spi_engine_execution.v]
 
 # parameters
@@ -16,23 +15,17 @@ ad_ip_parameter DEFAULT_SPI_CFG INTEGER 0
 ad_ip_parameter DEFAULT_CLK_DIV INTEGER 0
 ad_ip_parameter DATA_WIDTH INTEGER 8
 ad_ip_parameter NUM_OF_SDI INTEGER 1
-ad_ip_parameter SDO_DEFAULT INTEGER 1
-ad_ip_parameter SDI_DELAY INTEGER 1
-ad_ip_parameter MISO_DELAY INTEGER 1
 
 proc p_elaboration {} {
 
   set data_width [get_parameter_value DATA_WIDTH]
   set num_of_sdi [get_parameter_value NUM_OF_SDI]
   set num_of_cs [get_parameter_value NUM_OF_CS]
-  set miso_delay [get_parameter_value MISO_DELAY]
 
   # clock and reset interface
 
   ad_interface clock   clk     input 1
   ad_interface reset   resetn  input 1 if_clk
-
-  ad_interface clock   io_config_clk input 1
 
   ad_interface signal active output 1
 

@@ -43,8 +43,7 @@ module spi_engine_execution #(
   parameter DATA_WIDTH = 8,                   // Valid data widths values are 8/16/24/32
   parameter NUM_OF_SDI = 1,
   parameter [0:0] SDO_DEFAULT = 1'b0,
-  parameter [1:0] SDI_DELAY = 2'b00,
-  parameter MISO_DELAY = 1'b0) (
+  parameter [1:0] SDI_DELAY = 2'b00) (
 
   input clk,
   input resetn,
@@ -73,9 +72,7 @@ module spi_engine_execution #(
   output reg sdo_t,
   input [NUM_OF_SDI-1:0] sdi,
   output reg [NUM_OF_CS-1:0] cs,
-  output reg three_wire,
-
-  input io_config_clk
+  output reg three_wire
 );
 
 localparam CMD_TRANSFER = 2'b00;
@@ -405,58 +402,6 @@ end
 
 assign trigger_rx_s = trigger_rx_d[SDI_DELAY+1];
 
-// Add an additional input delay chain to the MISO line if required
-
-wire [NUM_OF_SDI-1:0] sdi_int_s;
-generate
-if (MISO_DELAY == 1) begin : g_miso_idelay
-
-  // Generate configuration sequence each time when the core is brought up
-  // from reset
-
-  reg [13:0] io_config_clkena_shiftreg;
-  reg [13:0] io_config_datain_shiftreg;
-  reg [13:0] io_config_update_shiftreg;
-  reg io_config_done;
-
-  wire io_config_clkena_s = io_config_clkena_shiftreg[13];
-  wire io_config_datain_s = io_config_datain_shiftreg[13];
-  wire io_config_update_s = io_config_update_shiftreg[13];
-
-  always @(posedge io_config_clk) begin
-    if(resetn == 1'b0) begin
-      io_config_clkena_shiftreg <= 14'h1FFC;
-      io_config_datain_shiftreg <= 14'h1FFC;
-      io_config_update_shiftreg <= 14'h1;
-      io_config_done <= 1'b0;
-    end else begin
-      if (io_config_done == 1'b0) begin
-        io_config_clkena_shiftreg <= {io_config_clkena_shiftreg, 1'b0};
-        io_config_datain_shiftreg <= {io_config_datain_shiftreg, 1'b0};
-        io_config_update_shiftreg <= {io_config_update_shiftreg, 1'b0};
-      end
-      if (io_config_update_shiftreg[13] == 1'b1) begin
-        io_config_done <= 1'b1;
-      end
-    end
-  end
-
-  altiobuf i_miso_idelay (
-    .datain (sdi),
-    .dataout (sdi_int_s),
-    .io_config_clk (io_config_clk),
-    .io_config_clkena (io_config_clkena_s),
-    .io_config_datain (io_config_datain_s),
-    .io_config_update (io_config_update_s)
-  );
-
-end else begin : g_miso
-
- assign sdi_int_s = sdi;
-
-end
-endgenerate
-
 // Load the serial data into SDI shift register(s), then link it to the output
 // register of the module
 
@@ -472,7 +417,7 @@ generate
         data_sdi_shift <= 0;
       end else begin
         if (trigger_rx_s == 1'b1) begin
-          data_sdi_shift <= {data_sdi_shift, sdi_int_s[i]};
+          data_sdi_shift <= {data_sdi_shift, sdi[i]};
         end
       end
     end

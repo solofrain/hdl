@@ -23,7 +23,6 @@ add_instance spi_engine_execution_0 spi_engine_execution
 set_instance_parameter_value spi_engine_execution_0 {DATA_WIDTH} {32}
 set_instance_parameter_value spi_engine_execution_0 {NUM_OF_SDI} {1}
 set_instance_parameter_value spi_engine_execution_0 {SDI_DELAY} {0}
-set_instance_parameter_value spi_engine_execution_0 {MISO_DELAY} {1}
 
 # spi_engine_interconnect
 
@@ -65,8 +64,6 @@ add_connection sys_dma_clk.clk spi_engine_offload_0.if_ctrl_clk
 add_connection sys_dma_clk.clk spi_engine_offload_0.if_spi_clk
 add_connection sys_dma_clk.clk axi_dmac_0.if_s_axis_aclk
 add_connection sys_dma_clk.clk axi_dmac_0.m_dest_axi_clock
-
-add_connection sys_iodelay_clk.clk spi_engine_execution_0.if_io_config_clk
 
 # resets
 
