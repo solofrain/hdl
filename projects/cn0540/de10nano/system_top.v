@@ -172,22 +172,28 @@ module system_top (
 
   // instantiations
 
-  assign gpio_i[63:41] = gpio_o[63:41];
+  // unused
+  assign gpio_i[63:42] = gpio_o[63:42];
 
+  // GPIO outputs
+  assign ltc2308_cs = gpio_o[41];
   assign cn0540_blue_led = gpio_o[40];
   assign cn0540_yellow_led = gpio_o[39];
   assign cn0540_sw_ff = gpio_o[38];
-  assign gpio_i[37] = cn0540_drdy;
   assign cn0540_shutdown = gpio_o[36];
   assign cn0540_drdy_aux = gpio_o[35];
   assign cn0540_csb_aux = gpio_o[34];
-  assign gpio_i[33] = cn0540_sync_in;
   assign cn0540_reset_adc = gpio_o[32];
 
-  assign gpio_i[31:14] = gpio_o[31:14];
-
-  assign gpio_i[13:8] = gpio_bd_i[5:0];
   assign gpio_bd_o[7:0] = gpio_o[7:0];
+
+  // GPIO inputs
+  assign gpio_i[37] = cn0540_drdy;
+  assign gpio_i[33] = cn0540_sync_in;
+
+  assign gpio_i[31:14] = gpio_o[31:14];
+  assign gpio_i[13:8] = gpio_bd_i[5:0];
+
 
   // IO Buffers for I2C
 
@@ -297,7 +303,7 @@ module system_top (
     .ltc2308_spi_MISO (ltc2308_miso),
     .ltc2308_spi_MOSI (ltc2308_mosi),
     .ltc2308_spi_SCLK (ltc2308_sclk),
-    .ltc2308_spi_SS_n (ltc2308_cs),
+    .ltc2308_spi_SS_n (),
     .axi_hdmi_tx_0_hdmi_if_h_clk (hdmi_out_clk),
     .axi_hdmi_tx_0_hdmi_if_h24_hsync (hdmi_hsync),
     .axi_hdmi_tx_0_hdmi_if_h24_vsync (hdmi_vsync),
