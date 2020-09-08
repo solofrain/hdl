@@ -98,6 +98,7 @@ add_connection spi_engine_offload_0.ctrl_sdo_wr       axi_spi_engine_0.offload0_
 add_connection spi_engine_offload_0.if_ctrl_enable    axi_spi_engine_0.if_offload0_enable
 add_connection spi_engine_offload_0.if_ctrl_enabled   axi_spi_engine_0.if_offload0_enabled
 add_connection spi_engine_offload_0.if_ctrl_mem_reset axi_spi_engine_0.if_offload0_mem_reset
+add_connection spi_engine_offload_0.status_sync       axi_spi_engine_0.offload_sync
 
 add_connection spi_engine_offload_0.offload_sdi axi_dmac_0.s_axis
 add_connection axi_dmac_0.m_dest_axi sys_hps.f2h_sdram0_data
