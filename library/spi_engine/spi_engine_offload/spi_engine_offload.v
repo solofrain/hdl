@@ -175,10 +175,10 @@ end
 
 assign cmd = (cmd_int_s[15:8] == 8'h30) ? {cmd_int_s[15:8], spi_sync_id_counter} : cmd_int_s;
 
-/* 
- * Forwarded SYNC interface, this can be used to monitor the state of the 
+/*
+ * Forwarded SYNC interface, this can be used to monitor the state of the
  * offload command sequence through SPI Engine regmap
- */	
+ */
 
 assign status_sync_data = sync_data;
 assign status_sync_valid = sync_valid;
