@@ -14,8 +14,8 @@ set_interface_property sys_rst EXPORT_OF sys_clk.clk_in_reset
 
 add_instance sys_hps altera_hps
 set_instance_parameter_value sys_hps {MPU_EVENTS_Enable} {0}
-set_instance_parameter_value sys_hps {F2SDRAM_Type} {Avalon-MM\ Bidirectional AXI-3 AXI-3}
-set_instance_parameter_value sys_hps {F2SDRAM_Width} {64 64 64}
+set_instance_parameter_value sys_hps {F2SDRAM_Type} {AXI-3}
+set_instance_parameter_value sys_hps {F2SDRAM_Width} {64}
 set_instance_parameter_value sys_hps {F2SINTERRUPT_Enable} {1}
 set_instance_parameter_value sys_hps {EMAC0_PinMuxing} {Unused}
 set_instance_parameter_value sys_hps {EMAC0_Mode} {N/A}
@@ -98,7 +98,6 @@ add_interface sys_hps_hps_io conduit end
 set_interface_property sys_hps_hps_io EXPORT_OF sys_hps.hps_io
 add_interface sys_hps_h2f_reset reset source
 set_interface_property sys_hps_h2f_reset EXPORT_OF sys_hps.h2f_reset
-add_connection sys_clk.clk sys_hps.f2h_sdram0_clock
 add_connection sys_clk.clk sys_hps.h2f_axi_clock
 add_connection sys_clk.clk sys_hps.f2h_axi_clock
 add_connection sys_clk.clk sys_hps.h2f_lw_axi_clock
@@ -129,16 +128,11 @@ proc ad_cpu_interconnect {m_base m_port} {
   set_connection_parameter_value sys_hps.h2f_lw_axi_master/${m_port} baseAddress ${m_base}
 }
 
-proc ad_dma_interconnect {m_port m_id} {
+proc ad_dma_interconnect {m_port} {
 
-  if {${m_id} == 1} {
-    add_connection ${m_port} sys_hps.f2h_sdram1_data
-    set_connection_parameter_value ${m_port}/sys_hps.f2h_sdram1_data baseAddress {0x0000}
-    return
-  }
+  add_connection ${m_port} sys_hps.f2h_sdram0_data
+  set_connection_parameter_value ${m_port}/sys_hps.f2h_sdram0_data baseAddress {0x0000}
 
-  add_connection ${m_port} sys_hps.f2h_sdram2_data
-  set_connection_parameter_value ${m_port}/sys_hps.f2h_sdram2_data baseAddress {0x0000}
 }
 
 # common dma interfaces clock
@@ -146,8 +140,7 @@ proc ad_dma_interconnect {m_port m_id} {
 add_instance sys_dma_clk clock_source
 add_connection sys_hps.h2f_user0_clock sys_dma_clk.clk_in
 add_connection sys_clk.clk_reset sys_dma_clk.clk_in_reset
-add_connection sys_dma_clk.clk sys_hps.f2h_sdram1_clock
-add_connection sys_dma_clk.clk sys_hps.f2h_sdram2_clock
+add_connection sys_dma_clk.clk sys_hps.f2h_sdram0_clock
 
 # internal memory
 
