@@ -30,15 +30,15 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i2c_sda
 
 # SPI interface for ltc2308
 
-set_location_assignment PIN_E8   -to dbg_ltc2308_spi_sclk   ; ## GPIO_0[1] - pin 2
-set_location_assignment PIN_D11  -to dbg_ltc2308_spi_miso   ; ## GPIO_0[3] - pin 4
-set_location_assignment PIN_AH13 -to dbg_ltc2308_spi_mosi   ; ## GPIO_0[5] - pin 6
-set_location_assignment PIN_AH14 -to dbg_ltc2308_spi_cs     ; ## GPIO_0[7] - pin 8
+set_location_assignment PIN_E8   -to dbg_ltc2308_sclk   ; ## GPIO_0[1] - pin 2
+set_location_assignment PIN_D11  -to dbg_ltc2308_miso   ; ## GPIO_0[3] - pin 4
+set_location_assignment PIN_AH13 -to dbg_ltc2308_mosi   ; ## GPIO_0[5] - pin 6
+set_location_assignment PIN_AH14 -to dbg_ltc2308_cs     ; ## GPIO_0[7] - pin 8
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_spi_sclk
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_spi_miso
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_spi_mosi
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_spi_cs
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_sclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_miso
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_mosi
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dbg_ltc2308_cs
 
 # reset and GPIO signals
 
