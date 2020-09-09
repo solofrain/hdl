@@ -101,12 +101,14 @@ add_connection spi_engine_offload_0.if_ctrl_mem_reset axi_spi_engine_0.if_offloa
 add_connection spi_engine_offload_0.status_sync       axi_spi_engine_0.offload_sync
 
 add_connection spi_engine_offload_0.offload_sdi axi_dmac_0.s_axis
-add_connection axi_dmac_0.m_dest_axi sys_hps.f2h_sdram0_data
 
 # cpu interconnects
 
 ad_cpu_interconnect 0x00020000 axi_dmac_0.s_axi
 ad_cpu_interconnect 0x00030000 axi_spi_engine_0.s_axi
+
+# dma interconnect
+ad_dma_interconnect axi_dmac_0.m_dest_axi
 
 #interrupts
 
