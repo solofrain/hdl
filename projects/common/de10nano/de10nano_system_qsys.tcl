@@ -211,9 +211,9 @@ set_interface_property sys_spi EXPORT_OF sys_spi.external
 # spi for LTC2308
 
 add_instance ltc2308_spi altera_avalon_spi
-set_instance_parameter_value ltc2308_spi {clockPhase} {0}
-set_instance_parameter_value ltc2308_spi {clockPolarity} {1}
-set_instance_parameter_value ltc2308_spi {dataWidth} {8}
+set_instance_parameter_value ltc2308_spi {clockPhase} {1}
+set_instance_parameter_value ltc2308_spi {clockPolarity} {0}
+set_instance_parameter_value ltc2308_spi {dataWidth} {12}
 set_instance_parameter_value ltc2308_spi {masterSPI} {1}
 set_instance_parameter_value ltc2308_spi {numberOfSlaves} {1}
 set_instance_parameter_value ltc2308_spi {targetClockRate} {50000000.0}
