@@ -128,11 +128,11 @@ module system_top (
   output           cn0540_reset_adc,
   output           cn0540_shutdown,
   output           cn0540_csb_aux,
-  output           cn0540_sw_ff,
   output           cn0540_drdy_aux,
   output           cn0540_blue_led,
   output           cn0540_yellow_led,
-  input            cn0540_sync_in,
+  output           cn0540_sync_in,
+  input            cn0540_sw_ff,
 
   output           ltc2308_cs,
   output           ltc2308_sclk,
@@ -179,17 +179,17 @@ module system_top (
   assign ltc2308_cs = gpio_o[41];
   assign cn0540_blue_led = gpio_o[40];
   assign cn0540_yellow_led = gpio_o[39];
-  assign cn0540_sw_ff = gpio_o[38];
   assign cn0540_shutdown = gpio_o[36];
   assign cn0540_drdy_aux = gpio_o[35];
   assign cn0540_csb_aux = gpio_o[34];
+  assign cn0540_sync_in = gpio_o[33];
   assign cn0540_reset_adc = gpio_o[32];
 
   assign gpio_bd_o[7:0] = gpio_o[7:0];
 
   // GPIO inputs
+  assign gpio_i[38] = cn0540_sw_ff;
   assign gpio_i[37] = cn0540_drdy;
-  assign gpio_i[33] = cn0540_sync_in;
 
   assign gpio_i[31:14] = gpio_o[31:14];
   assign gpio_i[13:8] = gpio_bd_i[5:0];
