@@ -106,22 +106,22 @@ set_property         -dict {PACKAGE_PIN J19   IOSTANDARD LVCMOS33               
 # XUD #1 PMOD
 
 set_property         -dict {PACKAGE_PIN AJ5   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_cs_n      ]; ## FMC1.D09	XM105.J1.7
-set_property         -dict {PACKAGE_PIN AF8   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_txrx      ]; ## FMC1.H17	XM105.J1.8
+set_property         -dict {PACKAGE_PIN AF8   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_scl       ]; ## FMC1.H17	XM105.J1.8
 set_property         -dict {PACKAGE_PIN AJ6   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_mosi      ]; ## FMC1.D08	XM105.J1.5
-set_property         -dict {PACKAGE_PIN AE8   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_if_state  ]; ## FMC1.H16	XM105.J1.6
+set_property         -dict {PACKAGE_PIN AE8   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_sda       ]; ## FMC1.H16	XM105.J1.6
 set_property         -dict {PACKAGE_PIN AF5   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_miso      ]; ## FMC1.G07	XM105.J1.3
-set_property         -dict {PACKAGE_PIN AJ4   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_rx_amp_en ]; ## FMC1.C15	XM105.J1.4
+set_property         -dict {PACKAGE_PIN AJ4   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_pmod_dip  ]; ## FMC1.C15	XM105.J1.4
 set_property         -dict {PACKAGE_PIN AE5   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_sclk      ]; ## FMC1.G06	XM105.J1.1
-set_property         -dict {PACKAGE_PIN AH4   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_ctrl_pll  ]; ## FMC1.C14	XM105.J1.2
+set_property         -dict {PACKAGE_PIN AH4   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud1_unused    ]; ## FMC1.C14	XM105.J1.2
 
 # XUD #2 PMOD
 
 set_property         -dict {PACKAGE_PIN AE1   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_cs_n      ]; ## FMC1.D15 	XM105.J1.39
-set_property         -dict {PACKAGE_PIN AA10  IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_txrx      ]; ## FMC1.H23 	XM105.J1.40
+set_property         -dict {PACKAGE_PIN AA10  IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_scl       ]; ## FMC1.H23 	XM105.J1.40
 set_property         -dict {PACKAGE_PIN AE2   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_mosi      ]; ## FMC1.D14 	XM105.J1.37
-set_property         -dict {PACKAGE_PIN AA11  IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_if_state  ]; ## FMC1.H22 	XM105.J1.38
+set_property         -dict {PACKAGE_PIN AA11  IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_sda       ]; ## FMC1.H22 	XM105.J1.38
 set_property         -dict {PACKAGE_PIN AF3   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_miso      ]; ## FMC1.G13 	XM105.J1.35
-set_property         -dict {PACKAGE_PIN Y7    IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_rx_amp_en ]; ## FMC1.C23 	XM105.J1.36
+set_property         -dict {PACKAGE_PIN Y7    IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_pmod_dip  ]; ## FMC1.C23 	XM105.J1.36
 set_property         -dict {PACKAGE_PIN AE3   IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_sclk      ]; ## FMC1.G12 	XM105.J1.33
-set_property         -dict {PACKAGE_PIN Y8    IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_ctrl_pll  ]; ## FMC1.C22 	XM105.J1.34
+set_property         -dict {PACKAGE_PIN Y8    IOSTANDARD LVCMOS18                       } [get_ports fmc_bob_xud2_unused    ]; ## FMC1.C22 	XM105.J1.34
 

@@ -103,21 +103,21 @@ module system_top  #(
   output        pmod1_7_8_PWR_UP_DOWN,
   // FMC1 XM105 breakout board
   output        fmc_bob_xud1_cs_n,
-  output        fmc_bob_xud1_txrx,
+  inout         fmc_bob_xud1_scl,
   output        fmc_bob_xud1_mosi,
-  output        fmc_bob_xud1_if_state,
+  inout         fmc_bob_xud1_sda,
   input         fmc_bob_xud1_miso,
-  output        fmc_bob_xud1_rx_amp_en,
+  input         fmc_bob_xud1_pmod_dip,
   output        fmc_bob_xud1_sclk,
-  output        fmc_bob_xud1_ctrl_pll,
+  input         fmc_bob_xud1_unused,
   output        fmc_bob_xud2_cs_n,
-  output        fmc_bob_xud2_txrx,
+  inout         fmc_bob_xud2_scl,
   output        fmc_bob_xud2_mosi,
-  output        fmc_bob_xud2_if_state,
+  inout         fmc_bob_xud2_sda,
   input         fmc_bob_xud2_miso,
-  output        fmc_bob_xud2_rx_amp_en,
+  input         fmc_bob_xud2_pmod_dip,
   output        fmc_bob_xud2_sclk,
-  output        fmc_bob_xud2_ctrl_pll
+  input         fmc_bob_xud2_unused
 
 );
 
@@ -276,22 +276,17 @@ module system_top  #(
   assign pmod1_6_6_5V_CTRL     = gpio_o[65];
   assign pmod1_7_8_PWR_UP_DOWN = pwr_up | gpio_o[66];
 
-  // XUD FMC BOB
-  assign fmc_bob_xud1_txrx = gpio_o[67];
-  assign fmc_bob_xud1_if_state = gpio_o[68];
-  assign fmc_bob_xud1_rx_amp_en = gpio_o[69];
-  assign fmc_bob_xud1_ctrl_pll = gpio_o[70];
-  assign fmc_bob_xud2_txrx = gpio_o[71];
-  assign fmc_bob_xud2_if_state = gpio_o[72];
-  assign fmc_bob_xud2_rx_amp_en = gpio_o[73];
-  assign fmc_bob_xud2_ctrl_pll = gpio_o[74];
+  // XUD GPIOs
+  assign gpio_i[67] = fmc_bob_xud1_pmod_dip;
+  assign gpio_i[68] = fmc_bob_xud2_pmod_dip;
 
   /* Board GPIOS. Buttons, LEDs, etc... */
   assign gpio_i[20: 8] = gpio_bd_i;
   assign gpio_bd_o = gpio_o[7:0];
 
   // Unused GPIOs
-  assign gpio_i[94:54] = gpio_o[94:54];
+  assign gpio_i[66:54] = gpio_o[66:54];
+  assign gpio_i[94:69] = gpio_o[94:69];
   assign gpio_i[31:21] = gpio_o[31:21];
   assign gpio_i[7:0] = gpio_o[7:0];
 
@@ -359,7 +354,12 @@ module system_top  #(
     .spi_pmod_csn_o (spi_pmod_csn),
     .spi_pmod_sdi_i (spi_pmod_miso),
     .spi_pmod_sdo_i (spi_pmod_mosi),
-    .spi_pmod_sdo_o (spi_pmod_mosi)
+    .spi_pmod_sdo_o (spi_pmod_mosi),
+    // XUD stuff
+    .iic_bob_xud1_scl_io (fmc_bob_xud1_scl),
+    .iic_bob_xud1_sda_io (fmc_bob_xud1_sda),
+    .iic_bob_xud2_scl_io (fmc_bob_xud2_scl),
+    .iic_bob_xud2_sda_io (fmc_bob_xud2_sda)
   );
 
   assign rx_data_p_loc[TX_JESD_L*TX_NUM_LINKS-1:0] = rx_data_p[TX_JESD_L*TX_NUM_LINKS-1:0];

@@ -564,3 +564,17 @@ ad_connect $sys_cpu_clk axi_spi_pmod/ext_spi_clk
 ad_cpu_interrupt ps-15 mb-7 axi_spi_pmod/ip2intc_irpt
 
 ad_cpu_interconnect 0x45200000 axi_spi_pmod
+
+# IIC for XUD 1 and XUD 2
+create_bd_intf_port -mode Master -vlnv xilinx.com:interface:iic_rtl:1.0 iic_bob_xud1
+create_bd_intf_port -mode Master -vlnv xilinx.com:interface:iic_rtl:1.0 iic_bob_xud2
+ad_ip_instance axi_iic axi_iic_bob_xud1
+ad_ip_instance axi_iic axi_iic_bob_xud2
+ad_connect iic_bob_xud1 axi_iic_bob_xud1/iic
+ad_connect iic_bob_xud2 axi_iic_bob_xud2/iic
+
+ad_cpu_interrupt ps-8 mb-8 axi_iic_bob_xud1/iic2intc_irpt
+ad_cpu_interrupt ps-9 mb-8 axi_iic_bob_xud2/iic2intc_irpt
+
+ad_cpu_interconnect 0x45300000 axi_iic_bob_xud1
+ad_cpu_interconnect 0x45400000 axi_iic_bob_xud2
