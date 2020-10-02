@@ -108,7 +108,8 @@ ad_cpu_interconnect 0x00020000 axi_dmac_0.s_axi
 ad_cpu_interconnect 0x00030000 axi_spi_engine_0.s_axi
 
 # dma interconnect
-ad_dma_interconnect axi_dmac_0.m_dest_axi
+
+ad_dma_interconnect axi_dmac_0.m_dest_axi 1
 
 #interrupts
 
