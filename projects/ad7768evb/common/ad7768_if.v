@@ -1,6 +1,6 @@
 // ***************************************************************************
 // ***************************************************************************
-// Copyright 2014 - 2017 (c) Analog Devices, Inc. All rights reserved.
+// Copyright 2014 - 2020 (c) Analog Devices, Inc. All rights reserved.
 //
 // In this HDL repository, there are many different and unique modules, consisting
 // of various HDL (Verilog or VHDL) components. The individual modules are
@@ -48,6 +48,14 @@ module ad7768_if (
   output                  adc_clk,
   output  reg             adc_valid,
   output  reg [ 31:0]     adc_data,
+  output  reg [ 31:0]     adc_data_0,
+  output  reg [ 31:0]     adc_data_1,
+  output  reg [ 31:0]     adc_data_2,
+  output  reg [ 31:0]     adc_data_3,
+  output  reg [ 31:0]     adc_data_4,
+  output  reg [ 31:0]     adc_data_5,
+  output  reg [ 31:0]     adc_data_6,
+  output  reg [ 31:0]     adc_data_7,
   output                  adc_sync,
 
   // control interface
