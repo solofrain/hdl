@@ -14,8 +14,9 @@ set_interface_property sys_rst EXPORT_OF sys_clk.clk_in_reset
 
 add_instance sys_hps altera_hps
 set_instance_parameter_value sys_hps {MPU_EVENTS_Enable} {0}
-set_instance_parameter_value sys_hps {F2SDRAM_Type} {AXI-3}
-set_instance_parameter_value sys_hps {F2SDRAM_Width} {64}
+set_instance_parameter_value sys_hps {F2SCLK_SDRAMCLK_Enable} {0}
+set_instance_parameter_value sys_hps {F2SDRAM_Type} {AXI-3 AXI-3}
+set_instance_parameter_value sys_hps {F2SDRAM_Width} {64 64}
 set_instance_parameter_value sys_hps {F2SINTERRUPT_Enable} {1}
 set_instance_parameter_value sys_hps {EMAC0_PinMuxing} {Unused}
 set_instance_parameter_value sys_hps {EMAC0_Mode} {N/A}
@@ -140,7 +141,7 @@ proc ad_dma_interconnect {m_port m_id} {
 add_instance sys_dma_clk clock_source
 add_connection sys_hps.h2f_user0_clock sys_dma_clk.clk_in
 add_connection sys_clk.clk_reset sys_dma_clk.clk_in_reset
-add_connection sys_dma_clk.clk sys_hps.f2h_sdram0_clock
+add_connection sys_dma_clk.clk sys_hps.f2h_sdram1_clock
 
 # internal memory
 
