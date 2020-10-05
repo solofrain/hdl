@@ -449,6 +449,18 @@ module ad7768_if (
     end
   end
 
+  // data channels
+  always @(posedge adc_clk) begin
+    adc_data_0 <= adc_ch_data_0;
+    adc_data_1 <= adc_ch_data_1;
+    adc_data_2 <= adc_ch_data_2;
+    adc_data_3 <= adc_ch_data_3;
+    adc_data_4 <= adc_ch_data_4;
+    adc_data_5 <= adc_ch_data_5;
+    adc_data_6 <= adc_ch_data_6;
+    adc_data_7 <= adc_ch_data_7;
+  end
+
   // data (common)
 
   assign adc_cnt_enable_1_s = (adc_cnt_p <= 9'h01f) ? 1'b1 : 1'b0;
