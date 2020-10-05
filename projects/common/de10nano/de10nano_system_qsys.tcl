@@ -128,11 +128,11 @@ proc ad_cpu_interconnect {m_base m_port} {
   set_connection_parameter_value sys_hps.h2f_lw_axi_master/${m_port} baseAddress ${m_base}
 }
 
-proc ad_dma_interconnect {m_port} {
+proc ad_dma_interconnect {m_port m_id} {
 
-  add_connection ${m_port} sys_hps.f2h_sdram0_data
-  set_connection_parameter_value ${m_port}/sys_hps.f2h_sdram0_data baseAddress {0x0000}
-
+  # one must manually create a new(e.g. 3'rd) f2h_sdram port in order to use it
+  add_connection ${m_port} sys_hps.f2h_sdram${m_id}_data
+  set_connection_parameter_value ${m_port}/sys_hps.f2h_sdram${m_id}_data baseAddress {0x0000}
 }
 
 # common dma interfaces clock
@@ -306,10 +306,6 @@ add_connection sys_hps.h2f_user2_clock video_dmac.if_m_axis_aclk
 add_connection sys_hps.h2f_user2_clock video_dmac.m_src_axi_clock
 add_connection sys_clk.clk_reset       video_dmac.m_src_axi_reset
 
-add_connection video_dmac.m_src_axi sys_hps.f2h_axi_slave
-set_connection_parameter_value video_dmac.m_src_axi/sys_hps.f2h_axi_slave arbitrationPriority {1}
-set_connection_parameter_value video_dmac.m_src_axi/sys_hps.f2h_axi_slave baseAddress {0x0000}
-set_connection_parameter_value video_dmac.m_src_axi/sys_hps.f2h_axi_slave defaultConnection {0}
 
 # interrupts
 
@@ -331,3 +327,6 @@ ad_cpu_interconnect 0x00100000 pixel_clk_pll_reconfig.mgmt_avalon_slave
 ad_cpu_interconnect 0x00109000 sys_gpio_out.s1
 ad_cpu_interconnect 0x0010A000 ltc2308_spi.spi_control_port
 
+# dma interconnects
+
+ad_dma_interconnect video_dmac.m_src_axi 0
