@@ -117,6 +117,11 @@ proc adi_project {project_name {mode 0} {parameter_list {}} } {
     set p_board [lindex [lsearch -all -inline [get_board_parts] *zcu102*] end]
     set sys_zynq 2
   }
+  if [regexp "_zcu106$" $project_name] {
+    set p_device "xczu7ev-ffvc1156-2-e"
+    set p_board [lindex [lsearch -all -inline [get_board_parts] *zcu106*] end]
+    set sys_zynq 2
+  }
 
   set VIVADO_VERSION [version -short]
   if {$IGNORE_VERSION_CHECK} {
